@@ -81,3 +81,28 @@ bool notePhone::check_modeName(std::string str, std::map<std::string, uint16_t> 
     return true;
 }
 
+bool notePhone::findContact(notePhone book, std::string &str, uint16_t &uid) {
+
+    if(notePhone::numOrName(str)) {
+        NumPhone number(str);
+        str = number.getNum();
+        auto it = phoneNumber.find(str);
+        if (it != phoneNumber.end()) {
+            uid = it->second;
+            return true;
+        } return false;
+
+    } else {
+        auto it = firstName.find(str);
+        if (it != firstName.end()){
+            uid = it->second;
+            return true;
+        } else if ((it = surName.find(str)) != surName.end()){
+            uid = it->second;
+            return true;
+        } else if ((it = patronymic.find(str)) != patronymic.end()){
+            uid = it->second;
+            return true;
+        } else return false;
+    }
+}

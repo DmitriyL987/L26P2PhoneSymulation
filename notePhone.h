@@ -16,10 +16,10 @@ public:
     notePhone();
     notePhone(std::string);
 
-    bool numOrName(std::string s);
+    static bool numOrName(std::string s);
     std::string inputNumber();
     bool newContact();
     bool check_modeName(std::string str, std::map<std::string,uint16_t> &book) ;
-
+    bool findContact(notePhone, std::string&, uint16_t &id);
 
 };

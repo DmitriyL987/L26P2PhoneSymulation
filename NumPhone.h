@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-class NumPhone {
+ class NumPhone {
     std::string nump;
     std::string codeCantries = "+7";
     std::string codeReg;
@@ -9,6 +9,7 @@ class NumPhone {
     std::string code_SS;
     std::string code_TT;
     std::string sF = "-";
+
 public:
     NumPhone(std::string);
     std::string getNum(){return nump;}

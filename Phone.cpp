@@ -19,6 +19,17 @@ int Phone::setCommand(const std::string& s) {
         command = EXIT;
         return -1;
     } else {
+        if(notePhone::numOrName(s)) {
+            NumPhone number(s);
+            bool validContact;
+            std::string num = number.getNum();
+            std::cout << "Введён номер телефона - " << num << ", что вы хотите сделать:\n" ;
+            std::cout << "\tпозвонить - \'call\'\n" ;
+            std::cout << "\tотправить сообщение - \'sms\'\n";
+            std::cout << "\tдобавить в контакты - \'add\'\n" << std::endl;
+
+
+        }
         std::cerr << "Неизвестная команда" << std::endl;
     }
 }
@@ -31,3 +42,5 @@ Phone::Phone() {
     notePhone noteBook;
     command = LOAD;
 }
+
+
