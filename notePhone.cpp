@@ -81,9 +81,8 @@ bool notePhone::check_modeName(std::string str, std::map<std::string, uint16_t> 
     return true;
 }
 
-bool notePhone::findContact(notePhone book, std::string &str, uint16_t &uid) {
-
-    if(notePhone::numOrName(str)) {
+bool notePhone::findContact(uint16_t &uid, std::string &str) {
+    if(numOrName(str)) {
         NumPhone number(str);
         str = number.getNum();
         auto it = phoneNumber.find(str);
@@ -91,7 +90,6 @@ bool notePhone::findContact(notePhone book, std::string &str, uint16_t &uid) {
             uid = it->second;
             return true;
         } return false;
-
     } else {
         auto it = firstName.find(str);
         if (it != firstName.end()){
