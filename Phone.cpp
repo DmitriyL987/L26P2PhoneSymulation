@@ -27,9 +27,9 @@ int Phone::setCommand(const std::string& s) {
             std::cout << "\tпозвонить - \'call\'\n" ;
             std::cout << "\tотправить сообщение - \'sms\'\n";
             std::cout << "\tдобавить в контакты - \'add\'\n" << std::endl;
+            if()
 
-
-        }
+        } else
         std::cerr << "Неизвестная команда" << std::endl;
     }
 }
