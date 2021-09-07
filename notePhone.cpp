@@ -38,11 +38,11 @@ bool notePhone::newContact() {
     getline(std::cin, name);
     size_t countContacts = contact.size();
 
-    if (size_t pos1 = name.find(' ') != name.npos){
+    if (uint16_t pos1 = name.find(' ') != name.npos){
         std::string subName = name.substr(0,pos1);
         if (check_modeName(subName, firstName)) {
         } else return false;
-        if (size_t pos2 = name.find(' ', pos1+1) != name.npos) {
+        if (uint16_t pos2 = name.find(' ', pos1+1) != name.npos) {
             subName = name.substr(pos1+1,(pos2 - (pos1 +1)));
             if (check_modeName(subName, surName)) {
                 subName = name.substr(pos2 + 1, (name.size() - (pos2 + 1)));
@@ -57,9 +57,16 @@ bool notePhone::newContact() {
         if(check_modeName(name, firstName)) {
             surName.insert(std::make_pair("", countContacts));
             patronymic.insert(std::make_pair("", countContacts));
-        } else std::cerr << "Ошибка! Имя не может быть пустым." << std::endl;
+        } else std::cerr << "Ошибка! Имя не может быть пустым.\nПовторите ввод." << std::endl;
     }
-
+    std::cout << "Номер телефона:" << std::endl;
+    std::string num;
+    std::cin.clear();
+    if(std::cin.fail()) std::cin.ignore(std::numeric_limits<std::streamsize>::max() , '\n' );
+    getline(std::cin,num);
+    NumPhone numPhone(num);
+    num = numPhone.getNum();
+    PhoneContact pC;
 }
 
 bool notePhone::check_modeName(std::string str, std::map<std::string, uint16_t> &book) {
@@ -71,7 +78,7 @@ bool notePhone::check_modeName(std::string str, std::map<std::string, uint16_t> 
     {
         if (book.find(str) == book.end()){
             a = false;
-            book.insert(std::make_pair(str, countContacts));
+            book.insert(std::make_pair(str, static_cast<uint16_t>(countContacts)));
         } else {
             str += "_";
             str += ('0' + s);
